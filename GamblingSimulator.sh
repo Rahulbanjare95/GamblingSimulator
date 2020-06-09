@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 #-------UC 1------
 
 	stake=100
@@ -36,6 +36,7 @@ function stakecalculator(){
 	done
 }
 
+	declare -A resultsDayWise
 	totalamount=0
 	totalDays=20
 	wins=0
@@ -46,11 +47,24 @@ function stakecalculator(){
 		if [ $stakeEveryDay -eq $winningAmountforResign ]
 		then
 			totalamount=$(( totalamount+limitValue ))
+			resultsDayWise["Day $day"]=$totalamount
 			(( wins++ ))
 		else
 			totalamount=$(( totalamount-limitValue))
+			resultsDayWise["Day $day"]=$totalamount
 			(( losses++ ))
 		fi
 	done
 	echo "No of days won = $wins  by $((wins*limitValue)) "
 	echo "No of days lost are $losses by  $((losses*limitValue))"
+
+
+	luckyDayValue=$( printf "%s\n" ${resultsDayWise[@]} | sort -nr | head -1 )
+	luckyDayKey=$( printf "%s\n" ${!resultsDayWise[@]} | sort -nr | head -1 )
+
+	unluckyDayValue=$(  printf "%s\n" ${resultsDayWise[@]} | sort -nr | tail -1 )
+	unluckyDayKey=$(  printf "%s\n" ${!resultsDayWise[@]} | sort -nr | tail -1 )
+
+	echo "Lucky Day is $luckyDayKey $luckyDayValue "
+	echo "UnLucky Day is $unluckyDayKey $unluckyDayValue "
+
