@@ -68,3 +68,9 @@ function stakecalculator(){
 	echo "Lucky Day is $luckyDayKey $luckyDayValue "
 	echo "UnLucky Day is $unluckyDayKey $unluckyDayValue "
 
+ 	if [ $totalamount -gt 0 ]
+	then
+		echo " You can play "
+	else
+		echo " You are in loss "
+	fi
