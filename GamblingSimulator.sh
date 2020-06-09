@@ -36,23 +36,21 @@ function stakecalculator(){
 	done
 }
 
-#--------Uc 4
-	day=1
 	totalamount=0
 	totalDays=20
-
-	for (( day=1; day<$totalDays; day++ ))
+	wins=0
+	losses=0
+	for (( day=0; day<$totalDays; day++ ))
 	do
 	stakecalculator
 		if [ $stakeEveryDay -eq $winningAmountforResign ]
 		then
 			totalamount=$(( totalamount+limitValue ))
-
+			(( wins++ ))
 		else
 			totalamount=$(( totalamount-limitValue))
+			(( losses++ ))
 		fi
-
-
 	done
-	echo "Amount final after 20 days"$totalamount
-
+	echo "No of days won = $wins  by $((wins*limitValue)) "
+	echo "No of days lost are $losses by  $((losses*limitValue))"
