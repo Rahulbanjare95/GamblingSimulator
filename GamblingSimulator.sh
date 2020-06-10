@@ -1,5 +1,3 @@
-
-
 	read -p "Enter the Stake " STAKE
 	read -p "Enter the bet for everygame" BET_EVERY_GAME
 	WON=1;
@@ -42,7 +40,10 @@
 			resultsDayWise["Day $day"]=$TOTAL_AMOUNT
 			(( LOSSES++ ))
 		fi
+	echo $day "$TOTAL_AMOUNT"
 	done
+
+
 	echo "No of days won = $WINS  by $((WINS*LIMIT_VALUE)) "
 	echo "No of days lost are $LOSSES by  $((LOSSES*LIMIT_VALUE))"
 
@@ -57,7 +58,7 @@
 
  	if [ $TOTAL_AMOUNT -gt 0 ]
 	then
-		echo " You can play "
+		echo " You can play  $TOTAL_AMOUNT"
 	else
-		echo " You are in loss "
+		echo " You are in loss $TOTAL_AMOUNT"
 	fi
