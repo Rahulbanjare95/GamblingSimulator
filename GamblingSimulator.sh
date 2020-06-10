@@ -2,7 +2,7 @@
 	read -p "Enter the bet for everygame" BET_EVERY_GAME
 	WON=1;
 	read -p "Enter the % limt of win or loss" LIMIT_PERCENTAGE
-	LIMIT_PERCENTAGE=50
+
    LIMIT_VALUE=$(($LIMIT_PERCENTAGE*$STAKE/100))
    winningAmountforResign=$(($STAKE*$LIMIT_PERCENTAGE/100+$STAKE));
    echo "   Maximum amount to resign = $winningAmountforResign"
@@ -40,7 +40,7 @@
 			resultsDayWise["Day $day"]=$TOTAL_AMOUNT
 			(( LOSSES++ ))
 		fi
-	echo $day "$TOTAL_AMOUNT"
+	echo "Day "$day " = $TOTAL_AMOUNT"
 	done
 
 
